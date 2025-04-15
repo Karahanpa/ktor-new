@@ -8,6 +8,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.bson.types.ObjectId
 import kotlinx.serialization.Serializable
+import at.favre.lib.crypto.bcrypt.BCrypt
 
 // Registration request with validation
 @Serializable
@@ -44,7 +45,8 @@ fun Route.userRoutes() {
             call.respond(HttpStatusCode.Conflict, "Username already exists")
             return@post
         }
-        val user = User(id = org.bson.types.ObjectId().toHexString(), username = req.username, passwordHash = req.password) // TODO: Hash password!
+        val hashedPassword = BCrypt.withDefaults().hashToString(12, req.password.toCharArray())
+        val user = User(id = org.bson.types.ObjectId().toHexString(), username = req.username, passwordHash = hashedPassword)
         UserRepository.insertUser(user)
         call.respond(HttpStatusCode.Created, mapOf("id" to user.id))
     }

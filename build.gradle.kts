@@ -33,6 +33,7 @@ dependencies {
     implementation("io.ktor:ktor-server-auth-jwt:2.3.9")
     // BCrypt for password hashing
     implementation("org.mindrot:jbcrypt:0.4")
+    implementation("at.favre.lib:bcrypt:0.10.2")
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
 }
