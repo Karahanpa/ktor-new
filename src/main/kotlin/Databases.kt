@@ -13,6 +13,8 @@ import io.ktor.server.routing.*
 fun Application.configureDatabases() {
     val mongoDatabase = connectToMongoDB()
     val carService = CarService(mongoDatabase)
+    val usersCollection = mongoDatabase.getCollection("users")
+    UserRepository.collection = usersCollection
     routing {
         // Get all cars
         get("/cars") {
@@ -55,6 +57,9 @@ fun Application.configureDatabases() {
                 call.respond(HttpStatusCode.OK)
             } ?: call.respond(HttpStatusCode.NotFound)
         }
+        
+        // User endpoints
+        userRoutes()
     }
 }
 
