@@ -1,4 +1,3 @@
-
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
@@ -29,6 +28,11 @@ dependencies {
     implementation(libs.ktor.server.netty)
     implementation(libs.logback.classic)
     implementation(libs.ktor.server.config.yaml)
+    // JWT and Auth dependencies
+    implementation("io.ktor:ktor-server-auth:2.3.9")
+    implementation("io.ktor:ktor-server-auth-jwt:2.3.9")
+    // BCrypt for password hashing
+    implementation("org.mindrot:jbcrypt:0.4")
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
 }
