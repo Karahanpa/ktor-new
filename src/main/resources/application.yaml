@@ -1,0 +1,17 @@
+ktor:
+    application:
+        modules:
+            - com.example.ApplicationKt.module
+    deployment:
+        port: 8080
+
+db:
+    mongo:
+        host: "localhost"
+        port: "27017"
+        database:
+            name: "ktor-new"  # This should match exactly what you want to see in MongoDB Compass
+        maxPoolSize: 20
+        # Uncomment and set these if you need authentication
+        # user: "your_username"
+        # password: "your_password"
