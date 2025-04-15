@@ -23,10 +23,9 @@ data class RegistrationRequest(
         if (password.length < 8 ||
             !password.any { it.isUpperCase() } ||
             !password.any { it.isLowerCase() } ||
-            !password.any { it.isDigit() } ||
-            !password.any { "!@#\$%^&*()_-+=<>?/".contains(it) }
+            !password.any { it.isDigit() }
         ) {
-            errors.add("Password must be at least 8 characters and include uppercase, lowercase, digit, and special character.")
+            errors.add("Password must be at least 8 characters and include uppercase, lowercase and digit.")
         }
         return errors
     }
